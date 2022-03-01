@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View, TouchableOpacity, Pressable } from 'react-native'
 import React from 'react'
 
-const StyledButton = () => {
+const StyledButton = ({type, content, onPress}) => {
+  const bg = type === 'primary'? '#171A2BCC' : '#FFFFFFA6';
+  const txtColor = type !== 'primary'?  '#171A2BCC' : '#FFFFFFA6';
+
   return (
    <View style={styles.container}>
-      <TouchableOpacity style={styles.button} onPress={()=> console.log("Press")}>
-          <Text style={styles.text}>Custom Order</Text>
+      <TouchableOpacity style={[styles.button, {backgroundColor: bg} ]} onPress={onPress}>
+          <Text style={[styles.text, {color:txtColor}]} >{content}</Text>
       </TouchableOpacity>
   </View>
   )

@@ -1,19 +1,22 @@
-import { StyleSheet, Text, View, ImageBackground } from 'react-native'
+import { StyleSheet,Dimensions, Text, View, ImageBackground } from 'react-native'
 import React from 'react'
 import StyledButton from './StyledButton'
 
-const CarItem = () => {
+const CarItem = ({name, tagline, image, taglineCTA }) => {
   return (
     <View style={styles.carContainer}>
-    <ImageBackground source={require('../assets/images/ModelX.jpeg')} style={styles.image}>
+    <ImageBackground source={image} style={styles.images}/>
         <View style={styles.titles} >
-        <Text style={styles.title}>Model S</Text>
-        <Text style={styles.subTitle} >Starting at $69,420</Text>
+        <Text style={styles.title}>{name}</Text>
+        <Text style={styles.subTitle}>{tagline} {''}<Text style={styles.subTitle}>{taglineCTA}</Text></Text>
+       
         </View>
-        <StyledButton/>
-    </ImageBackground>
+       <View style={styles.buttonContainer}>
+        <StyledButton content={"Custom Order"} type="primary" onPress={()=>console.log("clicked")} />
+        <StyledButton content={"Existing Inventory"} type="secondary" onPress={()=>console.log("clicked")} />
+       </View>
    
-  </View>
+  </View> 
   )
 }
 export default CarItem
@@ -21,7 +24,7 @@ export default CarItem
 const styles = StyleSheet.create({
     carContainer:{
         width: '100%',
-        height: '100%',
+        height: Dimensions.get('window').height,
         resizeMode:"contain"       
       },
       titles:{
@@ -38,8 +41,19 @@ const styles = StyleSheet.create({
         color: '#5c5e62'
         
       },
-      image:{
+      subTitleCTA:{
+        textDecorationLine: 'underline',
+      },
+
+      images: {
         width: '100%',
         height: '100%',
+        resizeMode: 'contain',
+        position: 'absolute',
+      },
+      buttonContainer:{
+        position: 'absolute',
+        bottom: 50,
+        width: '100%'
       }
 })
